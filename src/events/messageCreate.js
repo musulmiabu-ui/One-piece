@@ -204,18 +204,7 @@ async function handleLeveling(message, client) {
       return;
     }
 
-    const minXP = levelingConfig.xpRange?.min || levelingConfig.xpPerMessage?.min || 15;
-    const maxXP = levelingConfig.xpRange?.max || levelingConfig.xpPerMessage?.max || 25;
-
-    const safeMinXP = Math.max(1, minXP);
-    const safeMaxXP = Math.max(safeMinXP, maxXP);
-
-    const xpToGive = Math.floor(Math.random() * (safeMaxXP - safeMinXP + 1)) + safeMinXP;
-
-    let finalXP = xpToGive;
-    if (levelingConfig.xpMultiplier && levelingConfig.xpMultiplier > 1) {
-      finalXP = Math.floor(finalXP * levelingConfig.xpMultiplier);
-    }
+    let finalXP = 50;
 
     const result = await addXp(client, message.guild, message.member, finalXP);
     
