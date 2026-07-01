@@ -19,7 +19,7 @@ export function getXpForLevel(level) {
       'The level must be a valid number.'
     );
   }
-  return 5 * Math.pow(level, 2) + 50 * level + 50;
+  return 100 * Math.pow(2, level);
 }
 
 export function getLevelFromXp(xp) {
