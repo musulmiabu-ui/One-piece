@@ -151,8 +151,8 @@ export async function getLevelingConfig(client, guildId) {
     const guildConfig = await getGuildConfig(client, guildId);
     return guildConfig.leveling || {
       enabled: true,
-      xpPerMessage: { min: 15, max: 25 },
-      xpCooldown: 20,
+      xpPerMessage: { min: 50, max: 50 },
+      xpCooldown: 7,
       levelUpMessage: '{user} has leveled up to level {level}!',
       levelUpChannel: null,
       ignoredChannels: [],
