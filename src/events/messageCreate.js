@@ -196,7 +196,7 @@ async function handleLeveling(message, client) {
 
     const userData = await getUserLevelData(client, message.guild.id, message.author.id);
 
-    const cooldownTime = levelingConfig.xpCooldown || 60;
+    const cooldownTime = levelingConfig.xpCooldown || 7;
     const now = Date.now();
     const timeSinceLastMessage = now - (userData.lastMessage || 0);
 
