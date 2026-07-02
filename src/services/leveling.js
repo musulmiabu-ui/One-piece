@@ -198,7 +198,8 @@ export async function getUserLevelData(client, guildId, userId) {
         level: 0,
         totalXp: 0,
         lastMessage: 0,
-        rank: 0
+        rank: 0,
+        money: 0 // 💰
       };
     }
     
@@ -207,7 +208,8 @@ export async function getUserLevelData(client, guildId, userId) {
       level: Math.max(0, Math.min(data.level || 0, MAX_LEVEL)),
       totalXp: Math.max(0, data.totalXp || 0),
       lastMessage: data.lastMessage || 0,
-      rank: data.rank || 0
+      rank: data.rank || 0,
+     money: Math.max(0, Number(data.money) || 0) // 💰 
     };
   } catch (error) {
     logger.error(`Error getting user level data for ${userId}:`, error);
@@ -241,7 +243,8 @@ export async function saveUserLevelData(client, guildId, userId, data) {
       level: Math.max(0, Math.min(Number(data.level) || 0, MAX_LEVEL)),
       totalXp: Math.max(0, Number(data.totalXp) || 0),
       lastMessage: Number(data.lastMessage) || 0,
-      rank: Number(data.rank) || 0
+      rank: Number(data.rank) || 0,
+       money: Math.max(0, Number(data.money) || 0) // 💰
     };
 
     const key = `${guildId}:leveling:users:${userId}`;
