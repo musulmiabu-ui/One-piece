@@ -40,13 +40,16 @@ export async function addXp(client, guild, member, xpToAdd) {
         // 🪙 BELI REWARD (FIXED + SAFE)
        const reward = Math.floor(Math.random() * 50) + 1;
 
-await addMoney(
+const result = await addMoney(
     client,
     guild.id,
     member.user.id,
     reward,
     'wallet'
 );
+ if (!result.success) {
+    logger.error(`Failed to give level reward: ${result.error}`);
+}       
 
         xpNeededForNextLevel = getXpForLevel(levelData.level);
 
