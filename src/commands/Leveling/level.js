@@ -14,6 +14,7 @@ export default {
         .setDescription('Manage the leveling system')
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .setDMPermission(false)
+
         .addSubcommand((subcommand) =>
             subcommand
                 .setName('setup')
@@ -44,35 +45,34 @@ export default {
                 .addStringOption((option) =>
                     option
                         .setName('message')
-                        .setDescription(
-                            'Level-up message. Use {user} and {level} as placeholders (default provided)',
-                        )
+                        .setDescription('Level-up message. Use {user} and {level}')
                         .setMaxLength(500)
                         .setRequired(false),
                 )
                 .addIntegerOption((option) =>
                     option
                         .setName('xp_cooldown')
-                        .setDescription('Seconds between XP grants per user (default: 60)')
+                        .setDescription('Seconds between XP grants per user')
                         .setMinValue(0)
                         .setMaxValue(3600)
                         .setRequired(false),
                 ),
-         )
+        )
 
-    .addSubcommand((subcommand) =>
-    subcommand
-        .setName('dashboard')
-        .setDescription('Open the interactive leveling configuration dashboard')
-)
+        .addSubcommand((subcommand) =>
+            subcommand
+                .setName('dashboard')
+                .setDescription('Open the interactive leveling configuration dashboard'),
+        )
 
-.addSubcommand((subcommand) =>
-    subcommand
-        .setName('check')
-        .setDescription('Check your level and XP')
-)
+        .addSubcommand((subcommand) =>
+            subcommand
+                .setName('check')
+                .setDescription('Check your level and XP'),
+        ),
+
     category: 'Leveling',
-
+};
     async execute(interaction, config, client) {
         try {
             const deferred = await InteractionHelper.safeDefer(interaction, {
