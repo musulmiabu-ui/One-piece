@@ -77,7 +77,7 @@ export async function addXp(client, guild, member, xpToAdd) {
       }
       console.log(levelData);
       await saveUserLevelData(client, guild.id, member.user.id, levelData);
-      console.log(levelData);
+      
       return {
         success: true,
         level: levelData.level,
