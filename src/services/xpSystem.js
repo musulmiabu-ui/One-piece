@@ -11,7 +11,7 @@ export async function addXp(client, guild, member, xpToAdd) {
   return await Mutex.runExclusive(lockKey, async () => {
     try {
       
-      if (!xpToAdd || xpToAdd <= 0) {
+      if (typeof xpToAdd !== 'number' || xpToAdd <= 0) {
         return { success: false, reason: 'Invalid XP amount' };
       }
 
@@ -35,6 +35,11 @@ export async function addXp(client, guild, member, xpToAdd) {
         levelData.xp -= xpNeededForNextLevel;
         levelData.level += 1;
         didLevelUp = true;
+
+        // 🪙 BELI REWARD (FIXED + SAFE)
+        const reward = Math.floor(Math.random() * 50) + 1;
+        levelData.money = Math.max(0, Number(levelData.money) || 0) + reward;
+
         xpNeededForNextLevel = getXpForLevel(levelData.level);
 
         logger.info(`🎉 ${member.user.tag} leveled up to level ${levelData.level} in ${guild.name}`);
