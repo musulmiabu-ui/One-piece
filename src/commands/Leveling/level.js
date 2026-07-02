@@ -61,16 +61,16 @@ export default {
          )
 
     .addSubcommand((subcommand) =>
-        subcommand
-            .setName('dashboard')
-            .setDescription('Open the interactive leveling configuration dashboard')
-    )
+    subcommand
+        .setName('dashboard')
+        .setDescription('Open the interactive leveling configuration dashboard')
+)
 
-    .addSubcommand((subcommand) =>
-        subcommand
-            .setName('check')
-            .setDescription('Check your level and XP')
-    ),
+.addSubcommand((subcommand) =>
+    subcommand
+        .setName('check')
+        .setDescription('Check your level and XP')
+)
     category: 'Leveling',
 
     async execute(interaction, config, client) {
