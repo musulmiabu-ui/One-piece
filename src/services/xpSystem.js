@@ -5,6 +5,7 @@ import { getLevelingConfig, getXpForLevel, getUserLevelData, saveUserLevelData }
 import { logEvent, EVENT_TYPES } from './loggingService.js';
 import { formatLogLine } from '../utils/logEmbeds.js';
 import { Mutex } from '../utils/mutex.js';
+import { addMoney } from '../utils/economy.js';
 
 export async function addXp(client, guild, member, xpToAdd) {
   const lockKey = `leveling:${guild.id}:${member.user.id}`;
@@ -37,8 +38,15 @@ export async function addXp(client, guild, member, xpToAdd) {
         didLevelUp = true;
 
         // 🪙 BELI REWARD (FIXED + SAFE)
-        const reward = Math.floor(Math.random() * 50) + 1;
-        levelData.money = Math.max(0, Number(levelData.money) || 0) + reward;
+       const reward = Math.floor(Math.random() * 50) + 1;
+
+await addMoney(
+    client,
+    guild.id,
+    member.user.id,
+    reward,
+    'wallet'
+);
 
         xpNeededForNextLevel = getXpForLevel(levelData.level);
 
