@@ -64,10 +64,6 @@ export default {
     category: 'Leveling',
 
     async execute(interaction, config, client) {
-        try {
-            await InteractionHelper.safeDefer(interaction, {
-                flags: MessageFlags.Ephemeral,
-            });
 
             const subcommand = interaction.options.getSubcommand();
 
