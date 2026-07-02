@@ -75,7 +75,7 @@ export async function addXp(client, guild, member, xpToAdd) {
           logger.debug('Failed to log leveling event:', logError.message);
         }
       }
-      
+      console.log(levelData);
       await saveUserLevelData(client, guild.id, member.user.id, levelData);
       
       return {
