@@ -39,7 +39,9 @@ export async function addXp(client, guild, member, xpToAdd) {
         // 🪙 BELI REWARD (FIXED + SAFE)
         const reward = Math.floor(Math.random() * 50) + 1;
         levelData.money = Math.max(0, Number(levelData.money) || 0) + reward;
-
+console.log(
+  `Rewarded ${reward} money. New balance: ${levelData.money}`
+);
         xpNeededForNextLevel = getXpForLevel(levelData.level);
 
         logger.info(`🎉 ${member.user.tag} leveled up to level ${levelData.level} in ${guild.name}`);
